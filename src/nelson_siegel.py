@@ -17,6 +17,3 @@ def nelson_siegel(t, beta0, beta1, beta2, tau):
     term3 = beta2 * ((1 - np.exp(-t / tau)) / (t / tau) - np.exp(-t / tau))
     return term1 + term2 + term3
 
-# Example usage
-maturities = np.linspace(0.1, 30, 100)  # Maturities from 0.1 to 30 years
-yields = nelson_siegel(maturities, beta0=0.03, beta1=-0.02, beta2=0.02, tau=2.0)
