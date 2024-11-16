@@ -1,9 +1,25 @@
-# Example: Correlation analysis between macroeconomic variables and yields
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import pearsonr
 
-# Sample data: Replace with actual data loading
-inflation_data = pd.Series(np.random.randn(100) * 0.01 + 0.02)  # Simulated inflation data
-yield_curve_data = pd.Series(yields)  # Use calculated yields or actual data
+def analyze_macroeconomic_impact(macro_data, yield_data):
+    """
+    Analyzes the correlation between macroeconomic data and yield curve data.
+    
+    Parameters:
+    macro_data : pd.Series : A time series of macroeconomic data (e.g., inflation, interest rates).
+    yield_data : pd.Series : A time series of yield curve data (e.g., yields at specific maturities).
 
-correlation = inflation_data.corr(yield_curve_data)
-print(f"Correlation between inflation and yield curve: {correlation:.2f}")
+    Returns:
+    float : The correlation coefficient between macroeconomic data and yield data.
+    """
+    # Ensure the data are aligned in terms of time
+    aligned_data = pd.concat([macro_data, yield_data], axis=1).dropna()
+    aligned_data.columns = ['Macro', 'Yield']
+
+    # Calculate correlation
+    correlation, _ = pearsonr(aligned_data['Macro'], aligned_data['Yield'])
+    
+    # Plotting the relatio
+
